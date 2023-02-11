@@ -12,7 +12,7 @@ def get_quotes(db: Session, query: str):
     return db.query(QuoteTable).filter(QuoteTable.quote.in_(query))
 
 def get_users(db: Session):
-    return AuthorsTable.name.all()
+    return db.query(AuthorsTable).all()
 
 def get_random_quote(db: Session):
     return random.choice(db.query(QuoteTable).all())
