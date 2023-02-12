@@ -9,7 +9,7 @@ from models import (
 )
 
 def get_quotes(db: Session, query: str):
-    return db.query(QuoteTable).filter(QuoteTable.quote.in_(query))
+    return db.query(QuoteTable).filter(QuoteTable.text.like("%{}%".format(query))).order_by(QuoteTable.last_hit).all()
 
 def get_users(db: Session):
     return db.query(AuthorsTable).all()
